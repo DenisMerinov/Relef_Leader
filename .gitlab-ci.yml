@@ -1,0 +1,97 @@
+image: node:16-alpine
+.docker-registry-login: &docker-registry-login
+  - |
+    echo "$CI_REGISTRY_PASSWORD"|docker login -u $CI_REGISTRY_USER --password-stdin $CI_REGISTRY
+
+variables:
+  CI_ENVS_PATH: '.gitlab-ci-envs'
+
+default:
+  tags:
+    - dev-srvs00 
+  cache:
+    key: ${CI_COMMIT_REF_SLUG}
+    paths:
+      - node_modules
+  before_script:
+    - *docker-registry-login
+    - source $CI_ENVS_PATH/.$CI_COMMIT_REF_SLUG.env
+
+stages:
+  - build
+  - deploy-to-registry
+  - deploy-to-prod
+  - deploy-to-dev
+
+build:
+  stage: build
+  only:
+    - main
+    - dev
+    - master
+  before_script:
+    - node -v
+  script:
+    - yarn -v || npm install -g yarn
+    - npm i
+    - npm run build
+    - npm install -g serve
+
+deploy_to_registry_job:
+  stage: deploy-to-registry
+  only:
+    - main
+    - dev
+    - master
+  image: docker:latest
+  services:
+    - docker:dind
+  script:
+    - |
+      echo -e "FROM node:${NODE_VERSION}-alpine" > Dockerfile
+      echo -e "WORKDIR /$CI_PROJECT_NAME" >> Dockerfile
+      echo -e "ADD package*.json ./" >> Dockerfile
+      echo -e "RUN npm install" >> Dockerfile
+      echo -e "ADD . ." >> Dockerfile
+      echo -e "ENV NODE_ENV=${NODE_ENV} \ " >> Dockerfile
+      echo -e "    PORT=${PORT} " >> Dockerfile
+      echo -e "RUN yarn -v || npm i -g yarn && npm run build && npm install -g serve" >> Dockerfile
+      echo -e "EXPOSE 80" >> Dockerfile
+      echo -e "CMD [\"serve\", \"-s\", \"build\", \"-l\", \"80\"]" >> Dockerfile
+      cat Dockerfile
+      docker build --no-cache -t $CI_REGISTRY/$CI_PROJECT_PATH:$CI_COMMIT_REF_SLUG .
+      docker push $CI_REGISTRY/$CI_PROJECT_PATH:$CI_COMMIT_REF_SLUG
+
+
+.deploy: &deploy_to
+  image: gitlab.relef.ru:4567/glafir/docker-compose-alpine:latest
+  variables:
+    GIT_STRATEGY: none
+    PROD_SERVICE_DIR: "/home/glafir/services/node"
+  cache: {}
+  tags:
+    - dev-srvs00
+  before_script:
+    - *docker-registry-login
+  script:
+    - 'docker-compose -f $PROD_SERVICE_DIR/$CI_PROJECT_NAME/docker-compose.yml ps'
+    - 'docker-compose -f $PROD_SERVICE_DIR/$CI_PROJECT_NAME/docker-compose.yml pull'
+    - 'docker-compose -f $PROD_SERVICE_DIR/$CI_PROJECT_NAME/docker-compose.yml --compatibility up -d'
+    - 'docker-compose -f $PROD_SERVICE_DIR/$CI_PROJECT_NAME/docker-compose.yml ps'
+
+deploy_to_dev:
+  <<: *deploy_to
+  stage: deploy-to-dev
+  only:
+    - dev
+  tags:
+    - dev-srvs00
+
+deploy_to_prod:
+  <<: *deploy_to
+  stage: deploy-to-prod
+  only:
+    - main
+    - master
+  tags:
+    - srvs00

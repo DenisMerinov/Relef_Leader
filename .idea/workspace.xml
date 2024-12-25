@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="23fb7c04-f146-4555-8dfa-1713b2abe839" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/src/pages/RatingPage/ui/RatingPage.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/RatingPage/ui/RatingPage.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/widgets/PageBanner/ui/PageBanner.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/widgets/PageBanner/ui/PageBanner.tsx" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="new" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="PackageJsonUpdateNotifier">
+    <dismissed value="$PROJECT_DIR$/package.json" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2XSrCX9MiZXy9j1PfIorGUkzaZ8" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
+  <component name="ProjectViewState">
+    <option name="autoscrollFromSource" value="true" />
+    <option name="autoscrollToSource" value="true" />
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "eslint.code.style.apply.dismiss": "true",
+    "git-widget-placeholder": "main",
+    "ignore.virus.scanning.warn.message": "true",
+    "last_opened_file_path": "C:/Web.Projects/relef_react_ts",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.standard": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.standard": "",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "yarn",
+    "prettierjs.PrettierConfiguration.Package": "C:\\Web.Projects\\Relef_Leader\\node_modules\\prettier",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "ts.external.directory.path": "C:\\Web.Projects\\Relef_Leader\\node_modules\\typescript\\lib"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Web.Projects\Relef_Leader" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Web.Projects\Relef_Leader\src\entities\Rating\ui\GeneralRatingTable" />
+      <recent name="C:\Web.Projects\Relef_Leader\src\features\filterRating\model\selectors\getTypeRating" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-js-predefined-1d06a55b98c1-0b3e54e931b4-JavaScript-WS-241.17011.90" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="23fb7c04-f146-4555-8dfa-1713b2abe839" name="Changes" comment="" />
+      <created>1698633196349</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1698633196349</updated>
+      <workItem from="1698633197761" duration="910000" />
+      <workItem from="1698634126670" duration="7431000" />
+      <workItem from="1698643918998" duration="1802000" />
+      <workItem from="1698646849244" duration="1729000" />
+      <workItem from="1698648603771" duration="405000" />
+      <workItem from="1698717107285" duration="12000" />
+      <workItem from="1698723219773" duration="709000" />
+      <workItem from="1698724018043" duration="131000" />
+      <workItem from="1698724163620" duration="725000" />
+      <workItem from="1698725346304" duration="504000" />
+      <workItem from="1698844683430" duration="4395000" />
+      <workItem from="1698905528352" duration="830000" />
+      <workItem from="1701184305054" duration="2322000" />
+      <workItem from="1701241710373" duration="2834000" />
+      <workItem from="1702286606527" duration="618000" />
+      <workItem from="1706605270744" duration="924000" />
+      <workItem from="1706606204791" duration="514000" />
+      <workItem from="1706612218661" duration="54000" />
+      <workItem from="1719914620023" duration="1986000" />
+      <workItem from="1732273440847" duration="98000" />
+      <workItem from="1733806716019" duration="455000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="CUSTOM_BOOLEAN_PROPERTIES">
+                <map>
+                  <entry key="Show.Git.Branches" value="true" />
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+</project>

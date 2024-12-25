@@ -1,0 +1,53 @@
+Index: src/widgets/PageBanner/ui/PageBanner.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import classNames from 'classnames'\nimport { FC, ReactNode } from 'react'\nimport { BreadcrumbsItem, MyBreadcrumbs } from 'shared/ui/MyBreadcrumbs/MyBreadcrumbs'\nimport { Title, Text, Image, Box } from '@mantine/core'\nimport { useStyles } from './PageBanner.styles'\n\ninterface PageBannerProps {\n\ttitle: string\n\ttext: string\n\tsubText: string\n\tbreadcrumbs?: BreadcrumbsItem[]\n\tFilter?: ReactNode\n}\n\nexport const PageBanner: FC<PageBannerProps> = (props) => {\n\tconst { text, title, subText, breadcrumbs, Filter } = props\n\n\tconst { classes } = useStyles()\n\n\treturn (\n\t\t<div className={classNames(classes.pageBanner, {})}>\n\t\t\t<div className={classes.pageInfo}>\n\t\t\t\t{breadcrumbs && (\n\t\t\t\t\t<Box mb=\"xl\">\n\t\t\t\t\t\t<MyBreadcrumbs data={breadcrumbs} />\n\t\t\t\t\t</Box>\n\t\t\t\t)}\n\t\t\t\t<Title order={1} mb=\"xl\" className={classes.title}>\n\t\t\t\t\t{title}\n\t\t\t\t</Title>\n\t\t\t\t<Text c=\"dimmed\" mb=\"xl\">\n\t\t\t\t\t{text}\n\t\t\t\t</Text>\n\t\t\t\t<Text c=\"dimmed\" mb=\"xl\">\n\t\t\t\t\t{subText}\n\t\t\t\t</Text>\n\t\t\t\t{Filter}\n\t\t\t</div>\n\t\t\t<div className={classes.pageImg}>\n\t\t\t\t<Image\n\t\t\t\t\twidth={'auto'}\n\t\t\t\t\tsrc=\"assets/images/img_back.png\"\n\t\t\t\t\talt=\"BackImage\"\n\t\t\t\t\tclassName={classes.imgBack}\n\t\t\t\t/>\n\t\t\t</div>\n\t\t</div>\n\t)\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/widgets/PageBanner/ui/PageBanner.tsx b/src/widgets/PageBanner/ui/PageBanner.tsx
+--- a/src/widgets/PageBanner/ui/PageBanner.tsx	(revision 6cb6d21c81da0d34f2e99f7bd71c4b07166c2ecc)
++++ b/src/widgets/PageBanner/ui/PageBanner.tsx	(date 1733806784685)
+@@ -7,7 +7,7 @@
+ interface PageBannerProps {
+ 	title: string
+ 	text: string
+-	subText: string
++	subText?: string
+ 	breadcrumbs?: BreadcrumbsItem[]
+ 	Filter?: ReactNode
+ }
+@@ -31,9 +31,11 @@
+ 				<Text c="dimmed" mb="xl">
+ 					{text}
+ 				</Text>
+-				<Text c="dimmed" mb="xl">
+-					{subText}
+-				</Text>
++				{subText && (
++					<Text c="dimmed" mb="xl">
++						{subText}
++					</Text>
++				)}
+ 				{Filter}
+ 			</div>
+ 			<div className={classes.pageImg}>
+Index: src/pages/RatingPage/ui/RatingPage.tsx
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { BreadcrumbsItem } from 'shared/ui/MyBreadcrumbs/MyBreadcrumbs'\nimport { PageBanner } from 'widgets/PageBanner'\nimport { RoutePath } from 'shared/config/routeConfig/routeConfig'\nimport { GeneralRatingTable, PersonalRatingTable } from 'entities/Rating'\nimport { FilterRating } from 'features/filterRating'\nimport { useSelector } from 'react-redux'\nimport { getTypeRating } from 'features/filterRating/model/selectors/getTypeRating/getTypeRating'\nimport { getUserToken } from 'entities/User/model/selectors/getUserToken/getUserToken'\nimport { useEffect } from 'react'\nimport { filterRatingActions } from 'features/filterRating/model/slices/FilterRatingSlice'\nimport { useAppDispatch } from 'shared/hooks/useAppDispatch'\n\nconst breadcrumbs: BreadcrumbsItem[] = [\n\t{\n\t\thref: RoutePath.activity_list,\n\t\ttitle: 'Главная',\n\t\tinactive: true,\n\t},\n\t{\n\t\thref: RoutePath.rating,\n\t\ttitle: 'Рейтинг сотрудников',\n\t},\n]\n\nconst RatingPage = () => {\n\tconst ratingType = useSelector(getTypeRating)\n\tconst token = useSelector(getUserToken)\n\tconst dispatch = useAppDispatch()\n\n\tuseEffect(() => {\n\t\tif (!token) dispatch(filterRatingActions.changeTypeReducer('general'))\n\t}, [dispatch, token])\n\n\treturn (\n\t\t<>\n\t\t\t<PageBanner\n\t\t\t\tbreadcrumbs={breadcrumbs}\n\t\t\t\ttext={\n\t\t\t\t\t// eslint-disable-next-line max-len\n\t\t\t\t\t'Все результаты участия в Программе развития руководителей записываются и формируют общий рейтинг всех руководителей. Проходите онлайн-курсы, посещайте тренинги и становитесь лидером рейтинга по всей компании!'\n\t\t\t\t}\n\t\t\t\ttitle=\"Рейтинг сотрудников\"\n\t\t\t\t// eslint-disable-next-line max-len\n\t\t\t\tsubText='Самые активные участники и лидеры рейтинга будут отмечены руководством \"Рельеф-Центра\" в конце 2023 года'\n\t\t\t\tFilter={token && <FilterRating />}\n\t\t\t/>\n\n\t\t\t{ratingType === 'personal' ? <PersonalRatingTable /> : <GeneralRatingTable />}\n\t\t</>\n\t)\n}\n\nexport default RatingPage\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/pages/RatingPage/ui/RatingPage.tsx b/src/pages/RatingPage/ui/RatingPage.tsx
+--- a/src/pages/RatingPage/ui/RatingPage.tsx	(revision 6cb6d21c81da0d34f2e99f7bd71c4b07166c2ecc)
++++ b/src/pages/RatingPage/ui/RatingPage.tsx	(date 1733806784530)
+@@ -40,8 +40,6 @@
+ 					'Все результаты участия в Программе развития руководителей записываются и формируют общий рейтинг всех руководителей. Проходите онлайн-курсы, посещайте тренинги и становитесь лидером рейтинга по всей компании!'
+ 				}
+ 				title="Рейтинг сотрудников"
+-				// eslint-disable-next-line max-len
+-				subText='Самые активные участники и лидеры рейтинга будут отмечены руководством "Рельеф-Центра" в конце 2023 года'
+ 				Filter={token && <FilterRating />}
+ 			/>
+ 
